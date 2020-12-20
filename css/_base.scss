@@ -1,0 +1,38 @@
+$text-color: orange;
+
+@mixin box-shadow($color) {
+    box-shadow: 3px 3px 4px 1px $color;
+}
+
+@mixin text-effect($val) {
+    @if $val == danger {
+        color: red;
+    }
+    @else if $val == alert {
+        color: yellow;
+    }
+    @else {
+        color: black;
+    }
+}
+
+body {
+    background-color: #7159c1;
+    color: $text-color;
+}
+
+.container { // Começo do escopo
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    $text-color: blue;
+    @include box-shadow(rgba(0, 0, 0, 0.6));
+    p {
+        width: 100px;
+        height: 100px;
+        color: $text-color;
+        background-color: #ccc;
+        @include box-shadow(rgba(0, 0, 0, 0.6));
+        @include text-effect(danger);
+    }
+} // Fim do Escopo
